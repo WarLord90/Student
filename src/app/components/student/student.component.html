@@ -1,0 +1,115 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="titulo">Students</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo"> {{ accion | uppercase}} STUDENT</h5>
+                    <form [formGroup]="form" (ngSubmit)="saveStudent()">
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-user-pen"
+                                [class.green-icon]="this.form.get('txtUsername')?.valid"
+                                [class.red-icon]="this.form.get('txtUsername')?.invalid && this.form.get('txtUsername')?.touched"></i>
+                            </span>
+                            <input formControlName="txtUsername" type="text" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-circle-user"                                
+                                        [class.green-icon]="this.form.get('txtFirstName')?.valid"
+                                        [class.red-icon]="this.form.get('txtFirstName')?.invalid && this.form.get('txtFirstName')?.touched
+                                        "></i>
+                                    </span>
+                                    <input formControlName="txtFirstName" type="text" class="form-control" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-circle-user"
+                                        [class.green-icon]="this.form.get('txtLastName')?.valid"
+                                        [class.red-icon]="this.form.get('txtLastName')?.invalid && this.form.get('txtLastName')?.touched
+                                        "></i>
+                                    </span>
+                                    <input formControlName="txtLastName" type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">                                        
+                                        <i class="fa-solid fa-hashtag"
+                                        [class.green-icon]="this.form.get('txtAge')?.valid"
+                                        [class.red-icon]="this.form.get('txtAge')?.invalid && this.form.get('txtAge')?.touched
+                                        "></i>
+                                    </span>
+                                    <input formControlName="txtAge" minlength="1" type="number" maxlength="3" class="form-control" placeholder="Age">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-user-tie"
+                                        [class.green-icon]="this.form.get('txtCareer')?.valid"
+                                        [class.red-icon]="this.form.get('txtCareer')?.invalid && this.form.get('txtCareer')?.touched
+                                        "></i>
+                                    </span>
+                                    <input formControlName="txtCareer" type="text" class="form-control" placeholder="Career">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                                <i class="fa-solid fa-database"></i>&nbsp; Add
+                            </button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">LIST OF STUDENTS</h5>
+                    <table class="table">
+                        <thead style="position: sticky;top: 0" class="thead-dark"> 
+                            <tr> 
+                                <th>Username</th> 
+                                <th>First Name</th> 
+                                <th>Last Namer</th> 
+                                <th>Age</th>
+                                <th>Career</th>
+                                <th>Edit</th>
+                                <th>Delete</th> 
+                            </tr> 
+                        </thead> 
+                        <tbody>
+                            <tr *ngFor="let student of listStudents">
+                                <td>{{student.username}}</td>
+                                <td>{{student.firstName}}</td>
+                                <td>{{student.lastName}}</td>
+                                <td>{{student.age}}</td>
+                                <td>{{student.career}}</td>
+                                <td><i (click)="editStudent(student)" class="text-info far fa-solid fa-pen-to-square"></i></td>
+                                <td><i (click)="deleteStudent(student.id)" class="text-danger far fa-solid fa-trash"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
